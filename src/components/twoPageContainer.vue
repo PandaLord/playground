@@ -1,28 +1,12 @@
 <template>
   <div class="tabNav">
-    <transition class="animation" name="forward">
-      <div class="forward" v-show="showList === 0"
-      key="forward">
+    <transition 
+    v-for="(item,index) in list"
+    :key="'rankList' + index"
+    :name="(oldList < showList) ? (index === oldList ? 'left' : 'right') : (index === oldList ? 'right':'left')">
+      <div class="rankList" v-show="showList === index">
         <ul class="list">
-          <li v-for="(item,index) in (dataList ? dataList.forward:list.forward)"
-          :key="index"
-          class="listItem">
-            <span>
-              <img class="itemImg" :src="item.img" alt="pic1">
-              <div class="content">
-                <span class="itemRank">{{item.rank}}</span>
-                <span class="itemText">{{item.text}}</span>
-              </div>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </transition>
-    <transition class="animation" name="reverse">
-      <div class="reverse" v-show="showList === 1"
-        key="reverse">
-        <ul class="list">
-          <li v-for="(item,index) in (dataList ? dataList.reverse:list.reverse)"
+          <li v-for="(item,index) in (dataList ? dataList[index]:item)"
           :key="index"
           class="listItem">
             <span>
@@ -39,12 +23,11 @@
     <hr>
     <div class="indicators">
       <div class="indicator">
-        <i class="indi1"
-        :class="{'active':showList === 0}" 
-        @mouseover="showList = 0"></i>
-        <i class="indi2"
-        :class="{'active':showList === 1}" 
-        @mouseover="showList = 1"></i>
+        <i v-for="(item,index) in list"
+        :key="index"
+        class="indi"
+        :class="{'active':showList === index}"
+        @mouseover="showList = index"></i>
       </div> 
     </div>
   </div>
@@ -54,8 +37,9 @@ export default {
   data () {
     return {
       showList:0,
-      list:{
-        'forward':[
+      oldList:-1,
+      list:[
+        [
           {
             "img":"https://img11.360buyimg.com/mobilecms/s160x160_jfs/t6625/180/916393038/294602/1ed9a51b/59478622N5a819720.jpg!q90.webp",
             "rank":1,
@@ -72,7 +56,7 @@ export default {
             "text":"江小白 Se.100 40度 100ml*12瓶 整箱装白酒（小瓶装清香型高粱酒）",
           },
         ],
-        'reverse':[
+        [
           {
             "img":"https://img20.360buyimg.com/mobilecms/s160x160_jfs/t10909/237/1671419420/364289/2014c5de/59e43868Ndc750454.jpg!q90.webp",
             "rank":4,
@@ -89,25 +73,64 @@ export default {
             "text":"茅台集团 习酒 红习酱1952 53度500ml*6瓶 整箱装白酒 口感酱香型",
           },
         ],
-
-      }
+        [
+          {
+            "img":"https://img11.360buyimg.com/mobilecms/s160x160_jfs/t6625/180/916393038/294602/1ed9a51b/59478622N5a819720.jpg!q90.webp",
+            "rank":7,
+            "text":"剑南春 水晶剑 52度 整箱装白酒 500ml*6瓶 口感浓香型",
+          },
+          {
+            "img":"https://img11.360buyimg.com/mobilecms/s160x160_jfs/t5938/275/5738789059/127927/f0f2e7d1/596d66d8N179f55be.jpg!q90.webp",
+            "rank":8,
+            "text":"牛栏山 珍品二十 52度 整箱装 450ml*6瓶",
+          },
+          {
+            "img":"https://img13.360buyimg.com/mobilecms/s160x160_jfs/t7270/64/1653194848/143684/2419538e/599fe41bN3cda444c.jpg!q90.webp",
+            "rank":9,
+            "text":"江小白 Se.100 40度 100ml*12瓶 整箱装白酒（小瓶装清香型高粱酒）",
+          },
+        ],
+        [
+          {
+            "img":"https://img20.360buyimg.com/mobilecms/s160x160_jfs/t10909/237/1671419420/364289/2014c5de/59e43868Ndc750454.jpg!q90.webp",
+            "rank":10,
+            "text":"牛栏山 白酒 二锅头 百年陈酿（三牛）42度 浓香型 单瓶装 400ml",
+          },
+          {
+            "img":"https://img11.360buyimg.com/mobilecms/s160x160_g14/M08/01/01/rBEhV1NfXIQIAAAAAAFG5PYDsXEAAMyBAKVtcgAAUb8479.jpg!q90.webp",
+            "rank":11,
+            "text":"牛栏山 二锅头桶装 62度 5L",
+          },
+          {
+            "img":"https://img12.360buyimg.com/mobilecms/s160x160_jfs/t2737/143/1426663177/121378/1579850b/573ea0e6Neb8b8ebd.jpg!q90.webp",
+            "rank":12,
+            "text":"茅台集团 习酒 红习酱1952 53度500ml*6瓶 整箱装白酒 口感酱香型",
+          },
+        ],
+        [
+          {
+            "img":"https://img11.360buyimg.com/mobilecms/s160x160_jfs/t6625/180/916393038/294602/1ed9a51b/59478622N5a819720.jpg!q90.webp",
+            "rank":13,
+            "text":"剑南春 水晶剑 52度 整箱装白酒 500ml*6瓶 口感浓香型",
+          },
+          {
+            "img":"https://img11.360buyimg.com/mobilecms/s160x160_jfs/t5938/275/5738789059/127927/f0f2e7d1/596d66d8N179f55be.jpg!q90.webp",
+            "rank":14,
+            "text":"牛栏山 珍品二十 52度 整箱装 450ml*6瓶",
+          },
+          {
+            "img":"https://img13.360buyimg.com/mobilecms/s160x160_jfs/t7270/64/1653194848/143684/2419538e/599fe41bN3cda444c.jpg!q90.webp",
+            "rank":15,
+            "text":"江小白 Se.100 40度 100ml*12瓶 整箱装白酒（小瓶装清香型高粱酒）",
+          },
+        ],
+      ]
     }
   },
   props:["dataList"],
   watch:{
-    showList (old,curr) {
-      const animation = Array.prototype.slice.call(document.getElementsByClassName("animation"),0)
-      const prev = animation[old]
-      const now = animation[curr]
-      if (curr > old) {
-        prev.style = "name:forward"
-        now.style = 'name:reverse'
-      } else {
-        prev.style = "name:reverse"
-        now.style = "name:forward"
-      }
-      
-
+    showList (curr,old) {
+      this.oldList = old
     }
   }
 }
@@ -126,8 +149,7 @@ export default {
     background:#fff;
     position: relative;
     overflow:hidden;
-    .forward,
-    .reverse {
+    .rankList {
       width:100%;
       height:80%;
       padding:0 20px;
@@ -180,17 +202,16 @@ export default {
     .indicators {
       width:100%;
       height:50px;
-    
       position:absolute;
       bottom:0;
-      
+      text-align:center;
       .indicator {
-        width:20%;
+        width:100%;
         margin:0 auto;
         height:100%;
         font-size:0;
-        .indi1,
-        .indi2 {
+        text-align:center;
+        .indi {
           position: relative;
           display: inline-block;
           height:16px;
@@ -223,39 +244,54 @@ export default {
       }
 
     }
-    .forward-enter-active {
+    .left-enter-active {
       transform: translateX(0);
       transition: all 1s ease;
     }
           
-    .forward-leave-active {
+    .left-leave-active {
         transform: translateX(-100%);
         transition: all 1s ease;
     }
           
-    .forward-enter {
+    .left-enter {
         transform: translateX(-100%)
     }
-          
-    .reverse-leave {
+    .left-leave {
+        transform: translateX(0)
+    }  
+    .right-leave {
         transform: translateX(0)
     }
-    .reverse-enter-active {
+    .right-enter-active {
       transform: translateX(0);
       transition: all 1s ease;
     }
           
-    .reverse-leave-active {
+    .right-leave-active {
         transform: translateX(100%);
         transition: all 1s ease;
     }
           
-    .reverse-enter {
+    .right-enter {
         transform: translateX(100%)
     }
           
-    .forward-leave {
-        transform: translateX(0)
-    }
+    
   }
 </style>
+
+if (old < curr) {
+  if (index === old) {
+    left
+  } else {
+    right
+  } 
+} else {
+  if (index === old) {
+    right
+  } else {
+    left
+  }
+}
+(oldList < showList) ? (index === oldList ? 'left' : 'right') : (index === old ? 'right':'left')
