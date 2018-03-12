@@ -1,39 +1,43 @@
 <template>
-  <div class="navBarV">
-    <ul class="list">
-      <li v-for="(item,index) in list"
-      :key="index"
+  <div class="navBarV" >
+    <ul class="list"
+    >
+      <li v-for="(item,index1) in list"
+      :key="index1"
       class="listItem"
-      @mouseover="showMoreInfo(index)"
-      @mouseout="hideMoreInfo(index)"
+      @mouseover="showMore = index1"
+      @mouseout="showMore = -1"
       >
-        <a v-for="(ach,index) in item.name" 
+        <a v-for="(ach,index2) in item.name" 
         class="anchor"
-        :key="'ach' + index"
+        :key="'ach' + index2"
         >
           {{ach}}
         </a>
-        <div class="moreInfo">
-          <ul class="nav">
-            <li v-for="(item2,index) in item.nav"
-            :key="'nav'+ index"
-            class="navItem">
-              <a>{{item2}}</a>
-            </li>
-          </ul>
-          <ul v-for="(item3,index) in item.type" 
-            class="specList"
-            :key="'spec' + index">
-            <a class="specAnchor">{{item3.name}}</a>
-            <div class="specItems">
-              <li v-for="(item4,index) in item3.items"
-              :key="'specc' + index"
-              class="specItem">
-                <a>{{item4}}</a>
+        <div class="moreInfo" 
+        v-show="showMore === index1"
+        >
+            <ul class="nav">
+              <li v-for="(item2,index3) in item.nav"
+              :key="'nav'+ index3"
+              class="navItem">
+                <a>{{item2}}</a>
               </li>
-            </div>
-            <hr>      
-          </ul>
+            </ul>
+            <ul
+            v-for="(item3,index4) in item.type" 
+                class="specList"
+                :key="'spec' + index4"
+                >
+                <a class="specAnchor">{{item3.name}}</a>
+                <div class="specItems">
+                  <li v-for="(item4,index5) in item3.items"
+                  :key="'specc' + index5"
+                  class="specItem">
+                    <a class="item">{{item4}}</a>
+                  </li>
+                </div>    
+            </ul>    
         </div>
       </li>
     </ul>
@@ -90,7 +94,7 @@ export default {
                 "items":["进口电器"]},
                 ],  
         },
-        {
+        {   
             "name":["手机/","运营商/","数码"],
             "nav":["玩3C","手机频道","网上营业厅","配件选购中心","企业购","以旧换新"],
             "type":[
@@ -130,7 +134,7 @@ export default {
                 },
               ]
         },
-        {
+        { 
           "name":["电脑/","办公/"],
           "nav":["玩3C","本周热卖","企业采购","GAME+","装机大师","私人定制"],
           "type":[
@@ -175,7 +179,7 @@ export default {
               },
             ]
         },
-        {
+        { 
           "name":["家用电器"],
           "nav":["家电馆","乡镇专卖店",'家电服务','家电企业购','商用电器',"高端家电"],
           "type":[
@@ -221,7 +225,7 @@ export default {
                 "items":["进口电器"]},
                 ],  
         },
-        {
+        {   
             "name":["手机/","运营商/","数码"],
             "nav":["玩3C","手机频道","网上营业厅","配件选购中心","企业购","以旧换新"],
             "type":[
@@ -261,7 +265,7 @@ export default {
                 },
               ]
         },
-        {
+        { 
           "name":["电脑/","办公/"],
           "nav":["玩3C","本周热卖","企业采购","GAME+","装机大师","私人定制"],
           "type":[
@@ -306,7 +310,7 @@ export default {
               },
             ]
         },
-        {
+        { 
           "name":["家用电器"],
           "nav":["家电馆","乡镇专卖店",'家电服务','家电企业购','商用电器',"高端家电"],
           "type":[
@@ -352,7 +356,7 @@ export default {
                 "items":["进口电器"]},
                 ],  
         },
-        {
+        {   
             "name":["手机/","运营商/","数码"],
             "nav":["玩3C","手机频道","网上营业厅","配件选购中心","企业购","以旧换新"],
             "type":[
@@ -438,18 +442,10 @@ export default {
             ]
         },
       ],
+      showMore: -1,
     }
   },
-  methods: {
-    showMoreInfo (index) {
-      var moreInfo = document.getElementsByClassName("moreInfo")[index]
-      moreInfo.style.display = "block"
-    },
-    hideMoreInfo (index) {
-      var moreInfo = document.getElementsByClassName("moreInfo")[index]
-      moreInfo.style.display = "none"
-    }
-  }
+  
   
 }
 </script>
@@ -464,14 +460,21 @@ export default {
   .navBarV {
     font-size:16px;
     position: relative;
-    width:6vw;
-    background:#eee;
+    display: inline-block;
+    width:200px;
+    height:500px;
+    background:#fff;
     color:#000;
+    vertical-align: top;
+    
     .list {
       list-style:none;
-      padding:0 auto;
+      padding:3px 10px;
+      
       .listItem {
-        margin-bottom:2px;
+        width:110%;
+        box-sizing: border-box;
+        padding:10px 0;
         .anchor {
           cursor:pointer;
           text-align:start;
@@ -480,84 +483,99 @@ export default {
           }   
         }
         .moreInfo {
-          display:none;
+          display:block;
           position: absolute;
-          z-index:1000;
-          left:6vw;
+          z-index:1100;
+          left:200px;
           top:0;
-          width:50vw;
-          height:55vh;
-          background:#fff;
+          width:900px;
+          min-height:480px;
+          background:#f7f7f7;
           text-align:start;
+          padding:10px;
+          
           .nav {
-            width:100%;
-            margin-left:25px;
-            .navItem {
-              display:inline;
-              font-size:1.2rem;
-              width:5rem;
-              height:2rem;
-              line-height:2rem;
-              color:#fff;
-              margin:0 10px;
-              padding:0 10px;
-              background:#000;
-              cursor: pointer;
-              &:after{
-                content:">";
-                color:#fff;
-              }
-              &:hover {
-                opacity:0.6;
-              }
-            }
-          }
-          .specList {
-            width:100%;
-            margin:10px 0;
-            
-            .specAnchor {
-              font-size:1.5rem;
-              font-weight:bold;
-              width:10%;
-              line-height:2.0rem;
-              cursor:pointer;
-              text-align:end;
-              vertical-align: top;
-              display:inline-block;
-              &:after {
-                content:">";
-                vertical-align: top;
-                color:#000;
-                }
-              &:hover {
-                color:red;
-                }
-              }
-            .specItems {
-              display:relative;
-              width:60%;
-              display:inline-block;
-              .specItem {
+              width:100%;
+              margin-left:5px;
+              text-align:left;
+              .navItem {
                 display:inline;
-                font-size:1.5rem;
+                font-size:15px;
+                width:35px;
+                height:20px;
+                line-height:20px;
+                color:#fff;
+                margin:0 5px;
+                padding:5px;
+                background:#000;
                 cursor: pointer;
-                &:before {
-                  content:"|";
-                  color:#000;
-                  border:2px solid transparent;
-                  margin:0 5px;
+                &:after{
+                  content:">";
+                  color:#fff;
                 }
                 &:hover {
-                  color:red;
+                  opacity:0.6;
                 }
               }
-            }
-            
           }
+          .specList {
+              width:800px;
+              margin:10px 0;
+              display: block;
+              white-space:nowrap; 
+              .specAnchor {
+                font-size:15px;
+                font-weight:bold;
+                height:25px;
+                width:80px;
+                white-space:nowrap;
+                line-height:25px;
+                cursor:pointer;
+                text-align:end;
+                vertical-align: top;
+                display:inline-block;
+                &:after {
+                  content:">";
+                  vertical-align: top;
+                  color:#000;
+                  margin-left:5px;
+                  }
+                &:hover {
+                  color:red;
+                  }
+                }
+              .specItems { // 每个类别的具体列表
+                width:700px;
+                font-size:12px;
+                line-height:25px;
+                margin-left:3px;
+                display:inline-block;
+                
+                white-space:pre-wrap;
+                vertical-align: text-top;
+                color:#666;
+                .specItem {
+                  display:inline;              
+                  margin:10px;
+                  position:relative;
+                  vertical-align: top;
+                  cursor: pointer;
+                  &:before {
+                    content:"|";
+                    color:rgba(66,66,66,0.4);
+                    position:absolute;
+                    left:-12px;      
+                  }
+                  &:hover {
+                    color:red;
+                  }
+                }
+              }    
+          } 
 
         }
       }
+      
     }
 
 

@@ -32,11 +32,16 @@ export default {
   .subListHeader {
     width:100%;
     height:50px;
+    box-sizing:border-box;
     background:#fff;
     text-align:left;
+    
+    padding:10px 15px;
+    display:inline-block;
     .title {
       display: inline;
-      font-size:30px;
+      font-size:20px;
+      line-height: 20px;
       
     }
     .jump {
@@ -47,14 +52,15 @@ export default {
       .pointer {
         font-size:0;
         vertical-align: text-bottom;
-        width:30px;
-        height:30px;
+        line-height:20px;
+        width:24px;
+        height:24px;
       }
       .text {
-        font-size:20px;
-        line-height:35px;
+        font-size:15px;
+        line-height:20px;
         color:#666;
-        vertical-align:top;
+        vertical-align:text-top;
         
       }
     }

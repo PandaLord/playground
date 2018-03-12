@@ -71,10 +71,12 @@ export default {
   }
   .textBoard {
     font-size:16px;
-    width:160px;
-    height:150px;
+    width:200px;
+    height:180px;
+    margin-left:10px;
     background:#fff;
     color:#666;
+    display:inline-block;
     box-shadow: 0 2px 3px rgba(0,0,0,.1);
     header {
       width:100%;

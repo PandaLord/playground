@@ -147,7 +147,7 @@ export default {
           width:300px; 
           background:#fff;
           position: absolute;
-          z-index:1000;
+          z-index:1100;
           top:30px;
           left:0;
           .provinceCol {
@@ -193,7 +193,7 @@ export default {
           cursor: pointer;
           .myJd {
             position:absolute;
-            z-index:1000;
+            z-index:1100;
             top:32px;
             left:6px;
             height:170px;
@@ -220,7 +220,7 @@ export default {
           }
           .customerService {
             position:absolute;
-            z-index:1000;
+            z-index:1100;
             top:32px;
             right:0;
             height:300px;

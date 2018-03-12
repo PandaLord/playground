@@ -10,8 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "mongoose": "^5.0.8",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.2",
+    "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

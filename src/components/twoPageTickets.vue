@@ -12,7 +12,8 @@
             <span>
               <img class="itemImg" :src="item2.img" alt="pic1">
               <div class="content">
-                <span class="itemRank">{{item2.rank}}</span>
+                <span class="itemValue">{{'$' + item2.value}}</span>
+                <span class="itemLimit">{{'满'+ item2.limit + '元可用'}}</span>
                 <span class="itemText">{{item2.text}}</span>
               </div>
             </span>
@@ -58,15 +59,14 @@ export default {
 
   .tabNav {
     width:100%;
-    height:370px;
+    height:400px;
     background:#fff;
     position: relative;
     overflow:hidden;
     .rankList {
       width:100%;
-      height:80%;
-      padding:0 20px;
-      margin-top:20px;
+      height:100%;
+      padding:0 20px 10px 10px;
       position:absolute;
       .list {
         list-style:none;
@@ -74,27 +74,73 @@ export default {
           margin-bottom:15px;
           width:100%;
           height:33%;
+          background:#eee;
           cursor: pointer;
+          white-space: nowrap;
+          position:relative;
+          &:before {
+            content:'';
+            position:absolute;
+            top:-7.5px;
+            right:15%;
+            height:15px;
+            width:15px;
+            border-radius:50%;
+            background:#fff;
+          }
+          &:after {
+            content:'';
+            position:absolute;
+            bottom:-7.5px;
+            right:15%;
+            height:15px;
+            width:15px;
+            border-radius:50%;
+            background:#fff;
+
+          }
           .itemImg {   
             width:25%;
             height:100%;
             vertical-align:middle;
+            border-radius:50%;
+            margin-left:10px;
           }
-          .content {
-            display:inline;
+          .content {   
+            display:inline-block;
             color:#666;
+            width:90%;
+            height:33%;
+            white-space:nowrap;
+            margin-left:10px;
+            overflow:hidden;
+            vertical-align:middle;
             &:hover {
                 color:#f10125;
             }
-            .itemRank {
-              font-size:60px;
-              display: inline;
-              margin:0 10px;
-              vertical-align: middle;
+            &:after {
+              content:'更多精选好券';
+              width:14px;
+              line-height:15px;
+              font-size:14px;
+              position:absolute;
+              white-space:pre-wrap;
+              top:-13%;
+              margin-top:20px;
+              right:8%;
               
             }
+            .itemValue {
+              font-size:30px;
+              display: block;
+              margin-top:10px;
+              
+            }
+            .itemLimit {
+              display: block;
+            }
             .itemText {
-                display: inline-block;
+                display: block;
                 vertical-align:middle;
                 width:50%;
                 height:40px;
@@ -114,10 +160,9 @@ export default {
     }
     .indicators {
       width:100%;
-      height:50px;
+      height:20px;
       position:absolute;
-      bottom:-20px;
-      
+      bottom:15px;
       text-align:center;
       .indicator {
         width:100%;

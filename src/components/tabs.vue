@@ -14,7 +14,7 @@
 export default {
   data () {
     return {
-      list:["白酒","手机通讯","厨房小电","大 家 电","清洁用品"],
+      list:["白酒","大 家 电","厨房小电","手机通讯","清洁用品"],
       selectedTag:0
     }
   },
@@ -39,15 +39,20 @@ export default {
     width:100%;
     height:30px;
     background:#e3e4e5;
-    
     list-style:none;
+    white-space:nowrap;
+    
+    
     .listItem {
       vertical-align: middle;
+      word-wrap: break-word;
+      text-overflow: ellipsis;
+      word-break:break-all;
+      width:20%;
       display: inline;
-      margin:0 20px;
+      margin:0 10px;
       cursor: pointer;
-
-
+      font-size:14px;
     }
     
 

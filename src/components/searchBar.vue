@@ -47,10 +47,11 @@ export default {
     margin:0 auto; //测试用css
     .inputArea {
       display:inline-block;
-      float:left;
+      
       .searchInput {
         width:450px;
-        height:60px;
+        height:40px;
+        margin-left:60px;
         
       }
     }
@@ -58,33 +59,37 @@ export default {
     .searchButton {
       display:inline;
       width:80px;
-      height:60px;
+      height:40px;
       background:#f10215;
       vertical-align: bottom;
+      cursor: pointer;
       .search {
-        width:30px;
-        height:30px;
+        width:25px;
+        height:25px;
         
       }
     }
     .cartButton {
       float:right;
+      cursor: pointer;
       width:200px;
-      line-height: 1;
+      line-height: 40px;
       display:inline;
       background:#fff;
       color:red;
-      vertical-align: bottom;
-      height:60px;
+      vertical-align: middle;
+      height:40px;
       .cart {
-        vertical-align:text-bottom;
+        vertical-align:text-top;
       }
     }
     .searchBottom {
       width:600px;
       height:20px;
+      margin-left:60px;
       .searchBottomItem {
         font-size:0.8em;
+        cursor: pointer;
         color:#999;
         margin:0 2px;
         &:hover {
