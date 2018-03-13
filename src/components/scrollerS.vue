@@ -141,7 +141,6 @@ export default {
     .pics {
       width:100%;
       height:95%;
-      
       position:absolute;
       .pic {
         width:100%;
